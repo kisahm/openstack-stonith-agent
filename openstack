@@ -84,6 +84,9 @@ if cmd == 'getconfignames':
     for arg in [ "openstack_instance", "openstack_username", "openstack_password", "openstack_tenant", "openstack_authurl", "openstack_poweraction"]:
         print arg
     sys.exit(0)
+    
+if cmd == 'status':
+    sys.exit(0)
 
 instance = os.environ.get('openstack_instance').split("=")[1]
 username = os.environ.get('openstack_username').split("=")[1]
