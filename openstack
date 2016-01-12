@@ -20,12 +20,6 @@ try:
 except IndexError:
     sys.exit(1)
 
-instance = os.environ.get('openstack_instance').split("=")[1]
-username = os.environ.get('openstack_username').split("=")[1]
-password = os.environ.get('openstack_password').split("=")[1]
-tenant = os.environ.get('openstack_tenant').split("=")[1]
-authurl = os.environ.get('openstack_authurl').split("=")[1]
-action =  os.environ.get('openstack_poweraction').split("=")[1]
 
 
 xmlinfo = '''<parameters>
@@ -78,6 +72,17 @@ xmlinfo = '''<parameters>
 
 </parameters>'''
 
+instance = os.environ.get('openstack_instance').split("=")[1]
+username = os.environ.get('openstack_username').split("=")[1]
+password = os.environ.get('openstack_password').split("=")[1]
+tenant = os.environ.get('openstack_tenant').split("=")[1]
+authurl = os.environ.get('openstack_authurl').split("=")[1]
+action =  os.environ.get('openstack_poweraction').split("=")[1]
+
+if cmd == 'getconfignames':
+    for arg in [ "openstack_instance", "openstack_username", "openstack_password", "openstack_tenant", "openstack_authurl", "openstack_poweraction"]:
+        print arg
+    sys.exit(0)
 
 info = {
         'getinfo-devid':    'OpenStack instance',
@@ -88,11 +93,6 @@ info = {
 
 if cmd in info:
     print info[cmd]
-    sys.exit(0)
-
-if cmd == 'getconfignames':
-    for arg in [ "openstack_instance", "openstack_username", "openstack_password", "openstack_tenant", "openstack_authurl", "openstack_poweraction"]:
-        print arg
     sys.exit(0)
 
 if instance == "":
