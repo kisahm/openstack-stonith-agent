@@ -11,6 +11,7 @@ The STONITH agent is using the OpenStack APIs.<br>
 $ git clone https://github.com/kisahm/openstack-stonith-agent.git
 $ sudo cp openstack-stonith-agent/openstack /usr/lib/stonith/plugins/external/
 ```
+<br>
 
 **What you need**
 - The OpenStack tenant name (project name)
