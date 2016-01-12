@@ -6,6 +6,16 @@ If you are running a Pacemaker cluster on OpenStack instances you can use this S
 The STONITH agent is using the OpenStack APIs.<br>
 <br>
 
+**Requirements**<br>
+python-novaclient
+<br>
+<br>
+Install on Ubuntu: 
+```
+apt-get install python-novaclient
+```
+<br>
+
 **How to install**
 ```
 $ git clone https://github.com/kisahm/openstack-stonith-agent.git
