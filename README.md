@@ -11,3 +11,14 @@ The STONITH agent is using the OpenStack APIs.<br>
 $ git clone https://github.com/kisahm/openstack-stonith-agent.git
 $ sudo cp openstack-stonith-agent/openstack /usr/lib/stonith/plugins/external/
 ```
+
+**What you need**
+- The OpenStack tenant name (project name)
+- An OpenStack user name passwort in this tenant
+- The OpenStack instance names in this tenant
+- The authentication url (the Keystone url)  
+  Example: https://mycloud.example.com/v2.0/
+- A decision how to fence the instance:
+  - reboot - soft reboot of the instance
+  - reboot-force - hard reboot of the instance
+  - stop - power off the instance
