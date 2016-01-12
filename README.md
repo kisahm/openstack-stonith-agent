@@ -1,6 +1,6 @@
 **openstack-stonith-agent**
 
-**What it is**
+**What it is**<br>
 It's a STONITH agent for openstack instances.<br>
 If you are running a Pacemaker cluster on OpenStack instances you can use this STONITH agent to fence them.<br>
 The STONITH agent is using the OpenStack APIs.<br>
