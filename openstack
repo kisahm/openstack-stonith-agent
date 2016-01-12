@@ -18,7 +18,6 @@ argv = sys.argv
 try:
     cmd = argv[1]
 except IndexError:
-    my_err("Not enough arguments")
     sys.exit(1)
 
 instance = os.environ.get('openstack_instance').split("=")[1]
