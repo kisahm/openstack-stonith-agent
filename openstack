@@ -22,35 +22,35 @@ except IndexError:
     sys.exit(1)
 
 xmlinfo = '''<parameters>
- <parameter name="openstack_instance" unique="1" required="1">
+ <parameter name="openstack_instance" required="1">
   <content type="string"/>
   <shortdesc lang="en">openstack instance name</shortdesc>
   <longdesc lang="en">
    Contains the openstack instance (vm) name
   </longdesc>
  </parameter>
-<parameter name="openstack_username" unique="1" required="1">
+<parameter name="openstack_username" required="1">
   <content type="string"/>
   <shortdesc lang="en">openstack username</shortdesc>
   <longdesc lang="en">
    Contains the openstack username
   </longdesc>
  </parameter>
-<parameter name="openstack_password" unique="1" required="1">
+<parameter name="openstack_password" required="1">
   <content type="string" default=""/>
   <shortdesc lang="en">openstack password</shortdesc>
   <longdesc lang="en">
    The password for the openstack user
   </longdesc>
  </parameter>
-<parameter name="openstack_tenant" unique="1" required="1">
+<parameter name="openstack_tenant" required="1">
   <content type="string" default=""/>
   <shortdesc lang="en">openstack tenant (project) name</shortdesc>
   <longdesc lang="en">
    Contains the openstack tenant (project) name
   </longdesc>
  </parameter>
-<parameter name="openstack_authurl" unique="1" required="1">
+<parameter name="openstack_authurl" required="1">
   <content type="string" default=""/>
   <shortdesc lang="en">openstack authentication url (Keystone url)</shortdesc>
   <longdesc lang="en">
@@ -58,7 +58,7 @@ xmlinfo = '''<parameters>
    Example: https://mycloud.example.com:5000/v2.0/
   </longdesc>
  </parameter>
-<parameter name="openstack_poweraction" unique="0" required="0">
+<parameter name="openstack_poweraction" required="0">
   <content type="string" default="reset"/>
   <shortdesc lang="en">Openstack power action method</shortdesc>
   <longdesc lang="en">
