@@ -1,4 +1,4 @@
-**openstack-stonith-agent**
+**openstack-stonith-agent - UNDER CONSTRUCTION!!!**
 
 **What it is**<br>
 It's a STONITH agent for openstack instances.<br>
