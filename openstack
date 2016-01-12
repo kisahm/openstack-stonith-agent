@@ -1,11 +1,11 @@
 #!/usr/bin/python
 #
 # Description: External STONITH module for openstack guests
-# 
+#
 # Author: Kim-Norman Sahm
 # Email: kim-norman.sahm@o-s.de
 # Licence: GPL
-###################################################################
+##################################################################
 
 import sys
 import os
@@ -18,40 +18,39 @@ argv = sys.argv
 try:
     cmd = argv[1]
 except IndexError:
+    my_err("Not enough arguments")
     sys.exit(1)
 
-
-
 xmlinfo = '''<parameters>
- <parameter name="openstack_instance" required="1">
+ <parameter name="openstack_instance" unique="1" required="1">
   <content type="string"/>
   <shortdesc lang="en">openstack instance name</shortdesc>
   <longdesc lang="en">
    Contains the openstack instance (vm) name
   </longdesc>
  </parameter>
-<parameter name="openstack_username" required="1">
+<parameter name="openstack_username" unique="1" required="1">
   <content type="string"/>
   <shortdesc lang="en">openstack username</shortdesc>
   <longdesc lang="en">
    Contains the openstack username
   </longdesc>
  </parameter>
-<parameter name="openstack_password" required="1">
+<parameter name="openstack_password" unique="1" required="1">
   <content type="string" default=""/>
   <shortdesc lang="en">openstack password</shortdesc>
   <longdesc lang="en">
    The password for the openstack user
   </longdesc>
  </parameter>
-<parameter name="openstack_tenant" required="1">
+<parameter name="openstack_tenant" unique="1" required="1">
   <content type="string" default=""/>
   <shortdesc lang="en">openstack tenant (project) name</shortdesc>
   <longdesc lang="en">
    Contains the openstack tenant (project) name
   </longdesc>
  </parameter>
-<parameter name="openstack_authurl" required="1">
+<parameter name="openstack_authurl" unique="1" required="1">
   <content type="string" default=""/>
   <shortdesc lang="en">openstack authentication url (Keystone url)</shortdesc>
   <longdesc lang="en">
@@ -59,7 +58,7 @@ xmlinfo = '''<parameters>
    Example: https://mycloud.example.com:5000/v2.0/
   </longdesc>
  </parameter>
-<parameter name="openstack_poweraction" required="0">
+<parameter name="openstack_poweraction" unique="0" required="0">
   <content type="string" default="reset"/>
   <shortdesc lang="en">Openstack power action method</shortdesc>
   <longdesc lang="en">
@@ -72,11 +71,19 @@ xmlinfo = '''<parameters>
 
 </parameters>'''
 
+
+info = {
+        'getinfo-xml':      xmlinfo
+}
+
+if cmd in info:
+    print info[cmd]
+    sys.exit(0)
+
 if cmd == 'getconfignames':
     for arg in [ "openstack_instance", "openstack_username", "openstack_password", "openstack_tenant", "openstack_authurl", "openstack_poweraction"]:
         print arg
     sys.exit(0)
-
 
 instance = os.environ.get('openstack_instance').split("=")[1]
 username = os.environ.get('openstack_username').split("=")[1]
@@ -85,19 +92,8 @@ tenant = os.environ.get('openstack_tenant').split("=")[1]
 authurl = os.environ.get('openstack_authurl').split("=")[1]
 action =  os.environ.get('openstack_poweraction').split("=")[1]
 
-info = {
-        'getinfo-devid':    'OpenStack instance',
-        'getinfo-devname':  'openstack instance ' + instance,
-        'getinfo-devdescr': 'OpenStack Stonith Agent',
-        'getinfo-xml':      xmlinfo
-}
-
-if cmd in info:
-    print info[cmd]
-    sys.exit(0)
-
 if instance == "":
-	print "ERROR - you must set a instance name"
+        print "ERROR - you must set a instance name"
         sys.exit(3)
 elif username == "":
         print "ERROR - you must set your openstack username"
@@ -144,9 +140,6 @@ try:
 except:
         print "ERROR - Cannot shutdown instance '" + instance + "'"
         exit(4)
-
-
-
 
 
 
