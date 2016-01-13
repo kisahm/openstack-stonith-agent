@@ -23,13 +23,6 @@ except IndexError:
     sys.exit(1)
 
 xmlinfo = '''<parameters>
- <parameter name="openstack_instancelist" required="1">
-  <content type="string"/>
-  <shortdesc lang="en">list of the openstack cluster instances</shortdesc>
-  <longdesc lang="en">
-   Contains the openstack instances of the pacemaker cluster
-  </longdesc>
- </parameter>
  <parameter name="openstack_instance" required="1">
   <content type="string"/>
   <shortdesc lang="en">openstack instance name</shortdesc>
@@ -99,7 +92,6 @@ if cmd == 'getconfignames':
 if cmd == 'status':
     sys.exit(0)
 
-instancelist = os.environ.get('openstack_instancelist').split("=")[1]
 instance = os.environ.get('openstack_instance').split("=")[1]
 username = os.environ.get('openstack_username').split("=")[1]
 password = os.environ.get('openstack_password').split("=")[1]
@@ -108,7 +100,6 @@ authurl = os.environ.get('openstack_authurl').split("=")[1]
 action =  os.environ.get('openstack_poweraction').split("=")[1]
 
 ### DEBUG
-#print 'instancelist - " + instancelist
 #print "instance - " + instance
 #print "username - " + username
 #print "password - " + password
@@ -116,10 +107,7 @@ action =  os.environ.get('openstack_poweraction').split("=")[1]
 #print "authurl - " + authturl
 #print "action - " + action
 
-if instancelist == "":
-	print "ERROR - you must set the instance list"
-	sys.exit(3)
-elif instance == "":
+if instance == "":
         print "ERROR - you must set a instance name"
         sys.exit(3)
 elif username == "":
@@ -140,7 +128,7 @@ elif action != "reboot" and action != "reboot-force" and action != "shutdown":
         sys.exit(3)
 
 if cmd == 'gethosts':
-	print instancelist
+	print instance
 	sys.exit(0)
 
 nova = client.Client(2, username, password, tenant, authurl)
