@@ -9,6 +9,7 @@
 
 import sys
 import os
+import socket
 from novaclient import client
 
 global _debug
@@ -73,7 +74,9 @@ xmlinfo = '''<parameters>
 
 
 info = {
-        'getinfo-xml':      xmlinfo
+        'getinfo-xml':      xmlinfo,
+	'getinfo-devdescr': 'OpenStack STONITH device',
+	'getinfo-devid': 'OpenStack instance ' + socket.gethostname()
 }
 
 if cmd in info:
@@ -128,11 +131,13 @@ for vm in instances:
                         print "Found instance '" + instance +"' in tenant '" + tenant + "'"
                 break
 if found == 1:
-       if _debug:
-               print "Current state of instance '" + instance + "': " + currentstatus
+	if _debug:
+		print "Current state of instance '" + instance + "': " + currentstatus
 else:
-       print "ERROR - Cannot find any instance with name '" + instance + "'"
-       sys.exit(3)
+	print "ERROR - Cannot find any instance with name '" + instance + "'"
+	sys.exit(3)
+
+	
 
 try:
        if action == "reboot":
