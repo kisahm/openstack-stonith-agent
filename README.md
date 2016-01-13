@@ -11,13 +11,6 @@ git<br>
 python-novaclient
 <br>
 <br>
-Install on CentOS:
-```
-yum install -y https://rdoproject.org/repos/rdo-release.rpm
-yum update
-yum install git python-novaclient
-```
-
 Install on Ubuntu: 
 ```
 $ apt-get install git python-novaclient
