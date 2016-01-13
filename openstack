@@ -76,8 +76,7 @@ xmlinfo = '''<parameters>
 info = {
         'getinfo-xml':      xmlinfo,
 	'getinfo-devdescr': 'OpenStack STONITH device',
-	'getinfo-devid': 'OpenStack instance ' + socket.gethostname(),
-	'gethosts': socket.gethostname()
+	'getinfo-devid': 'OpenStack instance ' + socket.gethostname()
 }
 
 if cmd in info:
@@ -93,6 +92,7 @@ if cmd == 'getconfignames':
 if cmd == 'status':
     sys.exit(0)
 
+instancelist = os.environ.get('openstack_instancelist').split("="[1]
 instance = os.environ.get('openstack_instance').split("=")[1]
 username = os.environ.get('openstack_username').split("=")[1]
 password = os.environ.get('openstack_password').split("=")[1]
@@ -101,6 +101,7 @@ authurl = os.environ.get('openstack_authurl').split("=")[1]
 action =  os.environ.get('openstack_poweraction').split("=")[1]
 
 ### DEBUG
+#print 'instancelist - " + instancelist
 #print "instance - " + instance
 #print "username - " + username
 #print "password - " + password
@@ -108,7 +109,10 @@ action =  os.environ.get('openstack_poweraction').split("=")[1]
 #print "authurl - " + authturl
 #print "action - " + action
 
-if instance == "":
+if instancelist == "":
+	print "ERROR - yout must set the instance list"
+	sys.exit(3)
+elif instance == "":
         print "ERROR - you must set a instance name"
         sys.exit(3)
 elif username == "":
@@ -127,7 +131,11 @@ elif authurl == "":
 elif action != "reboot" and action != "reboot-force" and action != "shutdown":
         print "ERROR - you must set a shutdown action (reboot, reboot-force or stop)"
         sys.exit(3)
-#nova = client.Client(VERSION, USERNAME, PASSWORD, PROJECT_ID, AUTH_URL)
+
+if cmd == 'gethosts':
+	print instancelist
+	sys.exit(0)
+
 nova = client.Client(2, username, password, tenant, authurl)
 found = 0
 instances = nova.servers.list()
