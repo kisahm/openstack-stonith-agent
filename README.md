@@ -7,12 +7,13 @@ The STONITH agent is using the OpenStack APIs.<br>
 <br>
 
 **Requirements**<br>
+git<br>
 python-novaclient
 <br>
 <br>
 Install on Ubuntu: 
 ```
-$ apt-get install python-novaclient
+$ apt-get install git python-novaclient
 ```
 <br>
 
