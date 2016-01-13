@@ -25,6 +25,9 @@ except IndexError:
     my_err("Not enough arguments")
     sys.exit(1)
 
+if _debug:
+	fobj.write(cmd + "\n")
+
 xmlinfo = '''<parameters>
  <parameter name="openstack_instance" required="1">
   <content type="string"/>
@@ -99,12 +102,35 @@ if cmd == 'status':
 		fobj.write("Status = 0\n")
 	sys.exit(0)
 
-instance = os.environ.get('openstack_instance').split("=")[1]
-username = os.environ.get('openstack_username').split("=")[1]
-password = os.environ.get('openstack_password').split("=")[1]
-tenant = os.environ.get('openstack_tenant').split("=")[1]
-authurl = os.environ.get('openstack_authurl').split("=")[1]
-action =  os.environ.get('openstack_poweraction').split("=")[1]
+try:
+	instance = os.environ.get('openstack_instance').split("=")[1]
+except:
+	try:
+		instance = os.environ.get('openstack_instance')
+	except:
+		if _debug:
+			for key in os.environ.keys():
+	    			fobj.write("%30s %s \n" % (key,os.environ[key]))
+try:
+	username = os.environ.get('openstack_username').split("=")[1]
+except:
+	username = os.environ.get('openstack_username')
+try:
+	password = os.environ.get('openstack_password').split("=")[1]
+except:
+	 password = os.environ.get('openstack_password')
+try:
+	tenant = os.environ.get('openstack_tenant').split("=")[1]
+except:
+	tenant = os.environ.get('openstack_tenant')
+try:
+	authurl = os.environ.get('openstack_authurl').split("=")[1]
+except:
+	authurl = os.environ.get('openstack_authurl')
+try:
+	action =  os.environ.get('openstack_poweraction').split("=")[1]
+except:
+	action =  os.environ.get('openstack_poweraction')
 
 if _debug:
 	fobj.write("instance = " + instance+"\n")
