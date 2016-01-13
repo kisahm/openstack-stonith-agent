@@ -12,7 +12,7 @@ python-novaclient
 <br>
 Install on Ubuntu: 
 ```
-apt-get install python-novaclient
+$ apt-get install python-novaclient
 ```
 <br>
 
@@ -33,3 +33,24 @@ $ sudo cp openstack-stonith-agent/openstack /usr/lib/stonith/plugins/external/
   - reboot - soft reboot of the instance
   - reboot-force - hard reboot of the instance
   - stop - power off the instance
+
+**How to integrate in pacemaker**
+```
+root@clusternode-1:~# crm
+crm(live)# configure
+
+crm(live)configure# primitive stonith-clusternode-1 stonith:external/openstack params openstack_instance=clusternode-1 openstack_username=mystonithuser openstack_password=mypassword openstack_tenant=myclustertenant openstack_authurl=https://mycloud.example.com/v2.0/ openstack_poweraction=reboot
+
+crm(live)configure# primitive stonith-clusternode-2 stonith:external/openstack params openstack_instance=clusternode-2 openstack_username=mystonithuser openstack_password=mypassword openstack_tenant=myclustertenant openstack_authurl=https://mycloud.example.com/v2.0/ openstack_poweraction=reboot
+
+crm(live)configure# location loc-stonith-clusternode-1 stonith-clusternode-1 -inf: clusternode-1
+crm(live)configure# location loc-stonith-clusternode-2 stonith-clusternode-2 -inf: clusternode-2
+
+crm(live)configure# property stonith-enabled=true
+
+#Only at two node cluster
+crm(live)configure# no-quorum-policy="ignore"
+
+crm(live)configure# verify
+crm(live)configure# commit
+```
