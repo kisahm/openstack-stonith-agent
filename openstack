@@ -84,7 +84,7 @@ if cmd in info:
     sys.exit(0)
 
 if cmd == 'getconfignames':
-    for arg in [ "openstack_instance", "openstack_username", "openstack_password", "openstack_tenant", "openstack_authurl", "openstack_poweraction"]:
+    for arg in [ "openstack_instancelist", "openstack_instance", "openstack_username", "openstack_password", "openstack_tenant", "openstack_authurl", "openstack_poweraction"]:
         print arg
     sys.exit(0)
     
@@ -110,7 +110,7 @@ action =  os.environ.get('openstack_poweraction').split("=")[1]
 #print "action - " + action
 
 if instancelist == "":
-	print "ERROR - yout must set the instance list"
+	print "ERROR - you must set the instance list"
 	sys.exit(3)
 elif instance == "":
         print "ERROR - you must set a instance name"
