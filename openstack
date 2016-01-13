@@ -100,6 +100,14 @@ tenant = os.environ.get('openstack_tenant').split("=")[1]
 authurl = os.environ.get('openstack_authurl').split("=")[1]
 action =  os.environ.get('openstack_poweraction').split("=")[1]
 
+### DEBUG
+#print "instance - " + instance
+#print "username - " + username
+#print "password - " + password
+#print "tenant - " + tenant
+#print "authurl - " + authturl
+#print "action - " + action
+
 if instance == "":
         print "ERROR - you must set a instance name"
         sys.exit(3)
