@@ -84,7 +84,7 @@ if cmd in info:
     sys.exit(0)
 
 if cmd == 'getconfignames':
-    for arg in [ "openstack_instancelist", "openstack_instance", "openstack_username", "openstack_password", "openstack_tenant", "openstack_authurl", "openstack_poweraction"]:
+    for arg in [ "openstack_instance", "openstack_username", "openstack_password", "openstack_tenant", "openstack_authurl", "openstack_poweraction"]:
         print arg
     sys.exit(0)
     
@@ -128,7 +128,7 @@ elif action != "reboot" and action != "reboot-force" and action != "shutdown":
         sys.exit(3)
 
 if cmd == 'gethosts':
-	print instance
+	print instance 
 	sys.exit(0)
 
 nova = client.Client(2, username, password, tenant, authurl)
