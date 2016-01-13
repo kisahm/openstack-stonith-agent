@@ -92,7 +92,7 @@ if cmd == 'getconfignames':
 if cmd == 'status':
     sys.exit(0)
 
-instancelist = os.environ.get('openstack_instancelist').split("="[1]
+instancelist = os.environ.get('openstack_instancelist').split("=")[1]
 instance = os.environ.get('openstack_instance').split("=")[1]
 username = os.environ.get('openstack_username').split("=")[1]
 password = os.environ.get('openstack_password').split("=")[1]
