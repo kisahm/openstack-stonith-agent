@@ -76,7 +76,8 @@ xmlinfo = '''<parameters>
 info = {
         'getinfo-xml':      xmlinfo,
 	'getinfo-devdescr': 'OpenStack STONITH device',
-	'getinfo-devid': 'OpenStack instance ' + socket.gethostname()
+	'getinfo-devid': 'OpenStack instance ' + socket.gethostname(),
+	'gethosts': socket.gethostname()
 }
 
 if cmd in info:
