@@ -23,6 +23,13 @@ except IndexError:
     sys.exit(1)
 
 xmlinfo = '''<parameters>
+ <parameter name="openstack_instancelist" required="1">
+  <content type="string"/>
+  <shortdesc lang="en">list of the openstack cluster instances</shortdesc>
+  <longdesc lang="en">
+   Contains the openstack instances of the pacemaker cluster
+  </longdesc>
+ </parameter>
  <parameter name="openstack_instance" required="1">
   <content type="string"/>
   <shortdesc lang="en">openstack instance name</shortdesc>
