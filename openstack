@@ -158,7 +158,7 @@ elif authurl == "":
         print "ERROR - you must set the authentication url (keystone url) from the openstack cloud"
         sys.exit(3)
 elif action != "reboot" and action != "reboot-force" and action != "shutdown":
-        print "ERROR - you must set a shutdown action (reboot, reboot-force or stop)"
+        print "ERROR - you must set a shutdown action (reboot, reboot-force or shutdown)"
         sys.exit(3)
 
 if cmd == 'gethosts':
