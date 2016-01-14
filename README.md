@@ -33,7 +33,7 @@ $ sudo cp openstack-stonith-agent/openstack /usr/lib/stonith/plugins/external/
 - A decision how to fence the instance:
   - reboot - soft reboot of the instance
   - reboot-force - hard reboot of the instance
-  - stop - power off the instance
+  - shutdown - power off the instance
 <br>
 
 **How to integrate in pacemaker**
