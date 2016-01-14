@@ -13,7 +13,8 @@ import socket
 from novaclient import client
 
 global _debug
-_debug = 1
+# Enable/disable debug mode
+_debug = 0
 
 if _debug:
 	fobj = open("/var/log/stonith-openstack.log", "a")
