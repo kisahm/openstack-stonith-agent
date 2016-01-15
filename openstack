@@ -73,7 +73,7 @@ xmlinfo = '''<parameters>
    Options:
    * reboot - soft reboot the instance
    * reboot-force  - hard reboot the instance
-   * stop - shutdown the instance
+   * shutdown - shutdown the instance
   </longdesc>
  </parameter>
 
