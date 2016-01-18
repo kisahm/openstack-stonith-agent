@@ -13,7 +13,7 @@ python-novaclient
 <br>
 Install on Ubuntu: 
 ```
-$ apt-get install git python-novaclient
+$ sudo apt-get install git python-novaclient
 ```
 <br>
 
