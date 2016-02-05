@@ -20,7 +20,16 @@ $ sudo apt-get install git python-novaclient
 **How to install**
 ```
 $ git clone https://github.com/kisahm/openstack-stonith-agent.git
+```
+<br>
+Ubuntu:
+```
 $ sudo cp openstack-stonith-agent/openstack /usr/lib/stonith/plugins/external/
+```
+<br>
+SuSE:
+```
+$ sudo cp openstack-stonith-agent/openstack /usr/lib64/stonith/plugins/external/
 ```
 <br>
 
